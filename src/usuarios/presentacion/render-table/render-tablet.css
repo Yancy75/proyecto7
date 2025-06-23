@@ -1,0 +1,28 @@
+.tabla{
+    background: rgb(146, 146, 146);
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+th {
+    min-width: 100px;
+    text-shadow: 1px 1px black;
+    text-transform:uppercase;   
+}
+tr{
+     cursor: pointer;
+}
+.truno{
+    background: #0000ff59;;
+}
+.trdos{
+    background: #ffffffe6;
+    color: black;
+}
+.truno:hover{
+    background: yellow;
+    color: black;
+}
+.trdos:hover{
+    background: yellow;
+}

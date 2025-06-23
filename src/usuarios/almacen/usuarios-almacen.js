@@ -9,17 +9,18 @@ const estado = {
 const cargaProximapagina = async () =>{
     const usuario = await cargaUsuariosPorPagina(estado.paginaActual + 1); 
     if(isNaN(usuario[0].id)) {console.log('entre en if'); return false;}
-    //console.log(!isNaN(usuario[0].id));
-    //console.log(usuario[0].id);
     estado.paginaActual++;
     estado.usuarios = usuario;
-    // console.log(estado.paginaActual);   
-   // console.log(estado.usuarios);  
     //throw new Error('no implementado');
 }
 
 const cargaPreviapagina = async () =>{
-    throw new Error('no implementado');
+    if((estado.paginaActual -1)> 0){
+        const usuario = await cargaUsuariosPorPagina(estado.paginaActual-1);
+        estado.paginaActual--;
+        estado.usuarios = usuario;
+    }
+   // throw new Error('no implementado');
 }
 // cosas a implementar
 const cambiosUsuarios = () =>{
@@ -36,7 +37,14 @@ export default{
     cambiosUsuarios,
     recargaPagina,
    
+    /**
+     * 
+     * @returns {user[]}
+     */
     tomaUsuario: () => [...estado.usuarios],
+    /**
+     * @returns {Number};
+     */
     tomaPaginaActual: () => estado.paginaActual,
 
 }
