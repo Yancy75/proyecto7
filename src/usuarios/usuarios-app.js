@@ -3,6 +3,7 @@ import usuariosAlmacen from './almacen/usuarios-almacen';
 import {dibujaTabla} from './presentacion/render-table/render-tablet';
 import {renderBotones} from './presentacion/render-botones/render-botones';
 import {dibujaAgregaboton} from './presentacion/render-add-botones/render-botones-add';
+import {dibujaModal} from './presentacion/render-modal/render-modal';
 
 /**
  * 
@@ -14,6 +15,7 @@ export const usuarioApp = async (elemento) =>{
       dibujaTabla(elemento);
       renderBotones(elemento);
       dibujaAgregaboton(elemento);
+      dibujaModal(elemento);
 
 
       //rendertablet.dibujaTabla(elemento);

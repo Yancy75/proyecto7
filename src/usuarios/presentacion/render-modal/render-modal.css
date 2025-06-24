@@ -1,0 +1,34 @@
+.hide-modal{
+   /* display: none !important;*/
+}
+
+.modal-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0,0.5);
+}
+
+.modal-dialog{
+   background-image: linear-gradient(-45deg, #afafe1, #ffffff);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255,0.8);
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.formulario, input{
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.formulario, span, label{
+    color: black;
+}
