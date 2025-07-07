@@ -1,4 +1,5 @@
 import  usuariosAlmacen from '../../almacen/usuarios-almacen';
+import { mostraModal} from '../render-modal/render-modal';
 import './render-tablet.css';
 
 let tabla;
@@ -21,6 +22,19 @@ const creaTabla = () => {
     tabla.append(tablaCabecera, tablaCuerpo);
     return tabla;
 }
+
+/**
+ * 
+ * @param {MouseEvent} evento 
+ */
+
+const tablaSeleccion = (evento) =>{
+     /* le sto preguntado cual es el mas cerca que tenga la clase seleccion */
+     const elemento = evento.target.closest('.seleccion');
+     if(!elemento) return;
+     const id = elemento.getAttribute('data-id');
+     mostraModal(id);
+}
 /**
  * @param {HTMLDivElement} elemento
  */
@@ -33,6 +47,7 @@ export const dibujaTabla = (elemento) =>{
      elemento.innerHTML ="";
      elemento.append(tabla);
       // agreagar listeners
+     tabla.addEventListener('click', evento => tablaSeleccion(evento))
     }
 
     let tablaHTML="";
@@ -44,9 +59,9 @@ export const dibujaTabla = (elemento) =>{
            <td>${usuario.firstName}</td>
            <td>${usuario.lastName}</td>
            <td>${usuario.isActive}</td>
-           <td><a href="#/" data-id="${usuario.id}" class="tooltip"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="tooltiptext">Seleccion</span></a>
+           <td><a href="#/"  class="tooltip"><i data-id="${usuario.id}" class="fa fa-floppy-o seleccion" aria-hidden="true"></i><span class="tooltiptext">Seleccion</span></a>
            |
-           <a href="#/" data-id="${usuario.id}" class="tooltip"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="tooltiptext">Borrado</span></a></td>
+           <a href="#/"  class="tooltip"><i data-id="${usuario.id}" class="fa fa-trash-o borrado" aria-hidden="true"></i><span class="tooltiptext">Borrado</span></a></td>
       </tr>
       `;
     });

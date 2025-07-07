@@ -1,3 +1,4 @@
+import { mostraModal } from '../render-modal/render-modal';
 import './render-botones-add.css';
 /**
  * 
@@ -14,6 +15,6 @@ export const dibujaAgregaboton = (elemento) =>{
     elemento.append(fabboton);
 
     fabboton.addEventListener('click', ()=>{
-       console.log('no implementado');
+       mostraModal();
     });
 }
