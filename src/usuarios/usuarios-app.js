@@ -18,9 +18,9 @@ export const usuarioApp = async (elemento) =>{
       dibujaTabla(elemento);
       renderBotones(elemento);
       dibujaAgregaboton(elemento);
+      /* en dibujar modal estamos enviando una funcion completa y solo por gusto la llamamos callback */
       dibujaModal(elemento, async(usuarioComo) =>{
-            const usuario = await grabarUSuario(usuarioComo);
-            console.log(usuario);
+            const usuario = await grabarUSuario(usuarioComo);           
             usuariosAlmacen.cambiosUsuarios(usuario);
             dibujaTabla();
       });

@@ -4,19 +4,16 @@ import { cargaUsuariosPorPagina } from '../casos-de-uso/carga-usuarios-por-pagin
 const estado = {
     paginaActual: 0,
     usuarios: [],
-    verdad: true,
+    ultimo: 0,
 }
 
 const cargaProximapagina = async () =>{
     const usuario = await cargaUsuariosPorPagina(estado.paginaActual + 1); 
-   //  console.log(usuario.length);
-   // if(isNaN(usuario[0].id)) {console.log('entre en if'); return false;}else{console.log('esto no funciona');}
-   if(estado.verdad=== false) return false;
-   if(usuario.length < 10 ) {estado.verdad = false;}
-   // console.log(usuario[0].id);
-    estado.paginaActual++;
-    estado.usuarios = usuario;
-    //throw new Error('no implementado');
+    if(estado.ultimo === usuario[0].id) return false;
+        estado.ultimo = usuario[0].id;
+        estado.paginaActual++;
+        estado.usuarios = usuario;
+    
 }
 
 const cargaPreviapagina = async () =>{
@@ -24,7 +21,7 @@ const cargaPreviapagina = async () =>{
         const usuario = await cargaUsuariosPorPagina(estado.paginaActual-1);
         estado.paginaActual--;
         estado.usuarios = usuario;
-        estado.verdad = true;
+        estado.ultimo = 0;
     }
    // throw new Error('no implementado');
 }
@@ -36,8 +33,9 @@ const cargaPreviapagina = async () =>{
 const cambiosUsuarios = (actualizaUsuario) =>{
    
     let fuenEncontrado = false;
-
+      // console.log('aqui lo mando ' +actualizaUsuario);
     estado.usuarios = estado.usuarios.map(usuario => {
+       
         if(usuario.id === actualizaUsuario.id){
             fuenEncontrado = true;
             return actualizaUsuario;
@@ -52,7 +50,13 @@ const cambiosUsuarios = (actualizaUsuario) =>{
 }
 
 const recargaPagina = async () =>{
-    throw new Error('no implementado');
+     const usuario = await cargaUsuariosPorPagina(estado.paginaActual); 
+      console.log('recargue la pagina');
+   /* if(estado.ultimo === usuario[0].id) return false;
+        estado.ultimo = usuario[0].id;*/
+        /* como evaluamos esto que funcione */
+        estado.usuarios = usuario;
+        console.log('recargue la pagina');
 }
 
 export default{

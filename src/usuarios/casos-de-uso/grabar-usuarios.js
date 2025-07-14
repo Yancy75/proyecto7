@@ -1,5 +1,6 @@
 import { User } from '../modelos/usuarios';
 import {usuarioModelparaLocalhost} from '../mapeadores/user-to-localhost-mapper';
+import { localhostUsuariosaModelo } from '../mapeadores/localhost-user-mapper';
 /**
  * @param{ like<User>} usuarioComo
  */
@@ -15,17 +16,18 @@ export const grabarUSuario = async (usuarioComo) =>{
 
     const usuariosAGrabar = usuarioModelparaLocalhost(usuario);
     let usuarioActualizado;
-   //console.log(usuariosAGrabar);
+    // console.log(usuariosAGrabar);
     if (usuario.id){
         usuarioActualizado = await actualizarUsuario(usuariosAGrabar);
     }else{
         usuarioActualizado = await crearUsuario(usuariosAGrabar);
     }
-    
+    //console.log(usuarioActualizado);
     return localhostUsuariosaModelo(usuarioActualizado);
     //const actualizaUsuario = await crearUsuario(usuariosAGrabar);
 
 }
+
 /**
  * @param {like<User>} usuario
  */
@@ -46,7 +48,7 @@ const crearUsuario = async (usuario) =>{
         }
      });
      const nuevoUsuario = await res.json();
-     console.log({ nuevoUsuario});
+     //console.log({ nuevoUsuario});
      return nuevoUsuario;
 }
 
@@ -67,6 +69,6 @@ const actualizarUsuario = async (usuario) =>{
         }
      });
      const actualizaUsuario = await res.json();
-     console.log({ actualizaUsuario});
+     //console.log({ actualizaUsuario});
      return actualizaUsuario;
 }

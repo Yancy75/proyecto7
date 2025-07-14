@@ -17,7 +17,7 @@ export const mostraModal =  async (id = false) => {
     if(!id) return;
     const usuario = await cargaUsuariosPorid(id);
     darValoreForm(usuario);
-    console.log(usuario);
+   // console.log(usuario+ "te encontre");
 }
 
 export const esconderModal = () =>{
@@ -38,7 +38,7 @@ const darValoreForm = (usuario) =>{
  * @param {HTMLDivElement} elemento 
  * @param {(usuarioComo) => Promise<void>} callback
  */
-
+/* aqui esta la funcion que llama al grabado del usuario el callback */
 export const dibujaModal = (elemento, callback) =>{
 
     if(modal) return;
@@ -56,23 +56,28 @@ export const dibujaModal = (elemento, callback) =>{
 
     formulario.addEventListener('submit', async (evento) =>{
            evento.preventDefault();
-           
+           /* cuando creo un objeto tipo FormData el se empareja con el fomulario que le estoy enviando que ees formulario
+           la unica manerda de ver faciel este valor es con un for of que me permite recorrerlo tormando los valores con sus nombres */
            const datosFormularios = new FormData(formulario);
            const usuarioComo = {...cargaDeUsuario};
-           for(const [key, value] of datosFormularios){
-              if(key === 'balance'){
-                 usuarioComo[key] = +value;
-                 continue;
-              }
-              if(key === 'isActive'){
+          // console.log(datosFormularios.length); 
+          /* los valores estan cargados porque yo llamo el formulario despues de cargar los valores en los campos ejemplo basico abajo*/
+                            //for(const valor of datosFormularios){
+                            // console.log(valor[0]+' '+valor[1]);
+                            //}
+           /* yancy tonto eso es un for el recorre el dato formulario  */
+          for(const [key, value] of datosFormularios){
+               console.log(key+' '+value);
+            /* para el valor numerico y le decimos continue para que pase al siguente valor*/
+              if(key === 'balance'){usuarioComo[key] = +value;continue;/* +value que puede ser cualquier variable de nombre es para convertirlo en numero */}
+              if(key === 'isActive'){               
                 usuarioComo[key] = (value === 'on') ? true : false;
-                continue;
-              }
+                continue;}
+              /* aqui cargamos el resto de valores del formulario */
              usuarioComo[key]= value;
-           }
-          // console.log(usuarioComo);
-           //console.log('formulario enviado');
+          }
            //hacer guardar usuarios
+           console.log(usuarioComo);
            await callback(usuarioComo);
            esconderModal();
     });

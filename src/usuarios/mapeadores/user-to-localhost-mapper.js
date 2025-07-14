@@ -6,7 +6,7 @@ import {User} from '../modelos/usuarios';
 
 
 export const usuarioModelparaLocalhost = (usuario) =>{
-     console.log(usuario);
+     
     const {
         avatar,
         balance,        
