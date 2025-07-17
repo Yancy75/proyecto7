@@ -65,9 +65,10 @@ export const dibujaModal = (elemento, callback) =>{
                             //for(const valor of datosFormularios){
                             // console.log(valor[0]+' '+valor[1]);
                             //}
+                  usuarioComo['isActive']=false;/* usamos codigo negado para varia la activacion (todos entran en falso es esta activo entra y cambia) */
            /* yancy tonto eso es un for el recorre el dato formulario  */
           for(const [key, value] of datosFormularios){
-               console.log(key+' '+value);
+              // console.log(key+' '+value);
             /* para el valor numerico y le decimos continue para que pase al siguente valor*/
               if(key === 'balance'){usuarioComo[key] = +value;continue;/* +value que puede ser cualquier variable de nombre es para convertirlo en numero */}
               if(key === 'isActive'){               
@@ -77,7 +78,7 @@ export const dibujaModal = (elemento, callback) =>{
              usuarioComo[key]= value;
           }
            //hacer guardar usuarios
-           console.log(usuarioComo);
+          //console.log(usuarioComo);
            await callback(usuarioComo);
            esconderModal();
     });

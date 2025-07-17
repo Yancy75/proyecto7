@@ -5,6 +5,7 @@ const estado = {
     paginaActual: 0,
     usuarios: [],
     ultimo: 0,
+    conteo:[],
 }
 
 const cargaProximapagina = async () =>{
@@ -51,12 +52,17 @@ const cambiosUsuarios = (actualizaUsuario) =>{
 
 const recargaPagina = async () =>{
      const usuario = await cargaUsuariosPorPagina(estado.paginaActual); 
-      console.log('recargue la pagina');
-   /* if(estado.ultimo === usuario[0].id) return false;
-        estado.ultimo = usuario[0].id;*/
-        /* como evaluamos esto que funcione */
-        estado.usuarios = usuario;
-        console.log('recargue la pagina');
+           estado.usuarios = usuario;
+           estado.ultimo = usuario[0].id;
+      if(usuario.length < 10 && estado.paginaActual > 1){
+          estado.conteo[0] = usuario.length;
+          estado.conteo[1] = estado.paginaActual;
+       }else{
+         if (estado.conteo[0]===1 && usuario.length===10 && estado.conteo[1]=== estado.paginaActual){
+             estado.paginaActual--;
+             estado.conteo=[];
+        }
+      }
 }
 
 export default{
@@ -64,8 +70,7 @@ export default{
     cargaPreviapagina,
     cambiosUsuarios,
     recargaPagina,
-   
-    /**
+     /**
      * 
      * @returns {user[]}
      */
@@ -74,5 +79,4 @@ export default{
      * @returns {Number};
      */
     tomaPaginaActual: () => estado.paginaActual,
-
 }

@@ -43,7 +43,7 @@ const tablaSeleccion = (evento) =>{
  */
 
 const tablaBorrado =  async (evento) =>{
-     /* le sto preguntado cual es el mas cerca que tenga la clase seleccion */
+     /* le esto preguntado cual es el mas cerca que tenga la clase seleccion */
      const elemento = evento.target.closest('.borrado');
      if(!elemento) return;
      const id = elemento.getAttribute('data-id');

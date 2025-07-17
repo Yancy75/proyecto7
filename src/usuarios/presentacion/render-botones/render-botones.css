@@ -6,6 +6,7 @@
     border-radius: 5px;
     box-shadow: 0px 0px 5px inset black;
     background: white;
+    user-select: none;
 }
 
 button{
