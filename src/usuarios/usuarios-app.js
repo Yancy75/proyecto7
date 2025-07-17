@@ -25,7 +25,6 @@ export const usuarioApp = async (elemento) =>{
             dibujaTabla();
       });
 
-
       //rendertablet.dibujaTabla(elemento);
      /* console.log(usuariosAlmacen.tomaUsuario());
       console.log(usuariosAlmacen.tomaPaginaActual());*/
